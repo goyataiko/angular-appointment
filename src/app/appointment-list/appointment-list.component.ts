@@ -11,9 +11,23 @@ export class AppointmentListComponent {
   newAppointmentTitle : string = "";
   newAppointmentDate : Date = new Date;
   
-  appointment: [] =[]
+  appointment: Appointment[] =[]
 
   addAppointment(){
-    alert(this.newAppointmentTitle + "   " + this.newAppointmentDate)
+    //스페이스를 모두 뺸것의 길이가 0이 아님,      날짜가 존재함
+    if(this.newAppointmentTitle.trim().length && this.newAppointmentDate != null ){
+      let newAppointment : Appointment = {
+        id: Date.now(),
+        title: this.newAppointmentTitle,
+        date: this.newAppointmentDate
+      }
+      // alert(this.newAppointmentDate)
+      this.appointment.push(newAppointment)
+
+      this.newAppointmentTitle="";
+      this.newAppointmentDate=new Date();
+
+      alert(this.appointment.length)
+    }
   }
 }
