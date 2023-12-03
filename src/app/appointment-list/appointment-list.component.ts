@@ -24,10 +24,15 @@ export class AppointmentListComponent {
       this.appointments.push(newAppointment)
       this.newAppointmentTitle="";
       this.newAppointmentDate=new Date();
+
+      //local에 저장하기, stringify하여 저장
+      localStorage.setItem("appointments", JSON.stringify(this.appointments))
     }
   }
 
   deleteAppointment(index: number){
     this.appointments.splice(index, 1);
+    //local에 저장하기, stringify하여 저장
+    localStorage.setItem("appointments", JSON.stringify(this.appointments))
   }
 }
