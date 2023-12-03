@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Appointment } from '../models/appointment';
+import { OnInit } from '@angular/core';
 
 @Component({
    selector: 'app-appointment-list',
@@ -7,11 +8,18 @@ import { Appointment } from '../models/appointment';
    styleUrls: ['./appointment-list.component.css']
 })
 
-export class AppointmentListComponent {
-   newAppointmentTitle: string = "";
-   newAppointmentDate: Date = new Date;
+export class AppointmentListComponent implements OnInit {
 
+   
+   newAppointmentTitle: string = "";
+   newAppointmentDate: Date = new Date;   
    appointments: Appointment[] = []
+   
+   ngOnInit(): void {
+      let savedAppointments = localStorage.getItem("appointments")
+                        //삼항연산
+      this.appointments = savedAppointments ? JSON.parse(savedAppointments) : []
+   }
 
    addAppointment() {
       //스페이스를 모두 뺸것의 길이가 0이 아님,      날짜가 존재함
